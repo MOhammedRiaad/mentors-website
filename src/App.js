@@ -18,12 +18,13 @@ const useStyles = makeStyles(() => ({
 function App() {
   const classes = useStyles();
   const [mentors, setMentors] = useState(mentorsList);
+  const [filterMentors, setFilterMentors] = useState(mentorsList)
 
   const filterBySkill = (skill) => {
-    setMentors(mentorsList.filter(mentor => mentor.skills.includes(skill)))
+    setFilterMentors(mentorsList.filter(mentor => mentor.skills.includes(skill)))
   } 
   const filterByCountry = (country) => {
-    setMentors(mentorsList.filter(mentor => mentor.countryAlpha2Code === country))
+    setFilterMentors(mentorsList.filter(mentor => mentor.countryAlpha2Code === country))
   }
 
   return (
@@ -39,7 +40,7 @@ function App() {
             />
           </Grid>
           <Grid container item xs={12} sm={9} spacing={1} justify="flex-start" alignContent="flex-start" className={classes.cardsWrapper}>
-            {mentors.map((mentor, index) => (
+            {filterMentors.map((mentor, index) => (
               <Grid item key={index} xs={12}  md={4} lg={3}>
                 <MentorCard mentor={mentor} />
               </Grid>
